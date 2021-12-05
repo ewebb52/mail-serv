@@ -1,0 +1,7 @@
+MAIL FROM:<gorbellied>
+RCPT TO:<muermo>
+RCPT TO:<invalid-recipient>
+RCPT TO:<neckar>
+DATA
+hello cosmos
+.

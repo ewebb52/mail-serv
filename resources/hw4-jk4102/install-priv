@@ -1,0 +1,67 @@
+#!/bin/bash
+
+addgroup mailer
+useradd mailagent
+usermod -a -G mailer mailagent
+
+chown -R addleness:mailer "$1"/mail/addleness
+chown -R analects:mailer "$1"/mail/analects
+chown -R annalistic:mailer "$1"/mail/annalistic
+chown -R anthropomorphologically:mailer "$1"/mail/anthropomorphologically
+chown -R blepharosphincterectomy:mailer "$1"/mail/blepharosphincterectomy
+chown -R corector:mailer "$1"/mail/corector
+chown -R durwaun:mailer "$1"/mail/durwaun
+chown -R dysphasia:mailer "$1"/mail/dysphasia
+chown -R encampment:mailer "$1"/mail/encampment
+chown -R endoscopic:mailer "$1"/mail/endoscopic
+chown -R exilic:mailer "$1"/mail/exilic
+chown -R forfend:mailer "$1"/mail/forfend
+chown -R gorbellied:mailer "$1"/mail/gorbellied
+chown -R gushiness:mailer "$1"/mail/gushiness
+chown -R muermo:mailer "$1"/mail/muermo
+chown -R neckar:mailer "$1"/mail/neckar
+chown -R outmate:mailer "$1"/mail/outmate
+chown -R outroll:mailer "$1"/mail/outroll
+chown -R overrich:mailer "$1"/mail/overrich
+chown -R philosophicotheological:mailer "$1"/mail/philosophicotheological
+chown -R pockwood:mailer "$1"/mail/pockwood
+chown -R polypose:mailer "$1"/mail/polypose
+chown -R refluxed:mailer "$1"/mail/refluxed
+chown -R reinsure:mailer "$1"/mail/reinsure
+chown -R repine:mailer "$1"/mail/repine
+chown -R scerne:mailer "$1"/mail/scerne
+chown -R starshine:mailer "$1"/mail/starshine
+chown -R unauthoritativeness:mailer "$1"/mail/unauthoritativeness
+chown -R unminced:mailer "$1"/mail/unminced
+chown -R unrosed:mailer "$1"/mail/unrosed
+chown -R untranquil:mailer "$1"/mail/untranquil
+chown -R urushinic:mailer "$1"/mail/urushinic
+chown -R vegetocarbonaceous:mailer "$1"/mail/vegetocarbonaceous
+chown -R wamara:mailer "$1"/mail/wamara
+chown -R whaledom:mailer "$1"/mail/whaledom
+
+input=("addleness" "analects" "annalistic" "anthropomorphologically" "blepharosphincterectomy" "corector" "durwaun" "dysphasia" "encampment" "endoscopic" "exilic" "forfend" "gorbellied" "gushiness" "muermo" "neckar" "outmate" "outroll" "overrich" "philosophicotheological" "pockwood" "polypose" "refluxed" "reinsure" "repine" "scerne" "starshine" "unauthoritativeness" "unminced" "unrosed" "untranquil" "urushinic" "vegetocarbonaceous" "wamara" "whaledom")
+
+umask 077
+
+chmod +t "$1"/mail
+chmod +t "$1"/tmp
+chmod +t "$1"/bin
+
+for i in ${input[@]}
+do
+	 chmod -R u=rwx "$1"/mail/$i
+	 chmod -R g+wx "$1"/mail/$i
+	 chmod -R o-rwx "$1"/mail/$i
+	 chmod +t "$1"/mail/$i
+done
+
+chown mailagent:mailer "$1"/bin/mail-out
+chmod g+s "$1"/bin/mail-out
+
+chown mailagent:mailer "$1"/bin/mail-in
+
+chmod g+x "$1"/bin/mail-out
+chmod o-rwx "$1"/bin/mail-out
+
+chmod g+s "$1"/bin/mail-in

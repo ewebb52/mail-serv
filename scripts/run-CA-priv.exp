@@ -1,0 +1,110 @@
+#!/usr/bin/expect -f
+
+#################################
+# automates the creation of setup-CA-priv.sh
+#################################
+
+set force_conservative 0  ;# set to 1 to force conservative mode even if
+			  ;# script wasn't run conservatively originally
+if {$force_conservative} {
+	set send_slow {1 .1}
+	proc send {ignore arg} {
+		sleep .1
+		exp_send -s -- $arg
+	}
+}
+
+
+set timeout -1
+spawn scripts/setup-CA-priv.sh
+match_max 100000
+
+expect "Enter pass phrase for private/ca.key.pem:"
+send -- "root_password\r"
+expect "Verifying - Enter pass phrase for private/ca.key.pem:"
+send -- "root_password\r"
+expect "Enter pass phrase for private/ca.key.pem:"
+send -- "root_password\r"
+
+expect "Country Name (2 letter code)"
+send -- "US\r"
+expect "State or Province Name"
+send -- "\r"
+expect "Locality Name"
+send -- "\r"
+expect "Organization Name"
+send -- "Valgrind Ltd\r"
+expect "Organizational Unit Name"
+send -- "\r"
+expect "Common Name"
+send -- "Valgrind Ltd\r"
+expect "Email Address"
+send -- "\r"
+
+expect "Enter pass phrase for intermediate/private/intermediate.key.pem:"
+send -- "password\r"
+expect -exact "\r
+Verifying - Enter pass phrase for intermediate/private/intermediate.key.pem:"
+send -- "password\r"
+
+expect "Enter pass phrase for intermediate/private/intermediate.key.pem:"
+send -- "password\r"
+
+
+expect "Country Name (2 letter code)"
+send -- "US\r"
+expect "State or Province Name"
+send -- "\r"
+expect "Locality Name"
+send -- "\r"
+expect "Organization Name"
+send -- "Valgrind Ltd\r"
+expect "Organizational Unit Name"
+send -- "\r"
+expect "Common Name"
+send -- "Valgrind Intermediate CA Ltd\r"
+expect "Email Address"
+send -- "\r"
+
+#TODO update PATH
+expect "Enter pass phrase for *"
+send -- "root_password\r"
+
+expect "Sign the certificate?"
+send -- "y\r"
+expect "1 out of 1 certificate requests certified, commit?"
+send -- "y\r"
+
+expect "Enter pass phrase for intermediate/private/www.example.com.key.pem:"
+send -- "password\r"
+expect "Verifying - Enter pass phrase for intermediate/private/www.example.com.key.pem:"
+send -- "password\r"
+
+expect "Enter pass phrase for intermediate/private/www.example.com.key.pem:"
+send -- "password\r"
+
+expect "Country Name (2 letter code)"
+send -- "US\r"
+expect "State or Province Name"
+send -- "\r"
+expect "Locality Name"
+send -- "\r"
+expect "Organization Name"
+send -- "Valgrind Ltd\r"
+expect "Organizational Unit Name"
+send -- "\r"
+expect "Common Name"
+send -- "127.0.0.1\r"
+expect "Email Address"
+send -- "\r"
+
+#TODO update PATH
+expect "Enter pass phrase for *"
+send -- "password\r"
+
+expect "Sign the certificate?"
+send -- "y\r"
+expect "1 out of 1 certificate requests certified, commit?"
+send -- "y\r"
+
+expect eof

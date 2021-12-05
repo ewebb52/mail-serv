@@ -1,0 +1,5 @@
+MAIL FROM:<blepharosphincterectomy>
+RCPT TO:<mk4036>
+DATA
+hello universe
+.

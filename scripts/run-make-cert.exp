@@ -1,0 +1,54 @@
+#!/usr/bin/expect -f
+
+# NOTE: Takes in 1 arg (client password)
+
+set force_conservative 0  ;# set to 1 to force conservative mode even if
+			  ;# script wasn't run conservatively originally
+if {$force_conservative} {
+	set send_slow {1 .1}
+	proc send {ignore arg} {
+		sleep .1
+		exp_send -s -- $arg
+	}
+}
+
+
+set timeout -1
+set pass [lindex $argv 0];
+set user [lindex $argv 1];
+
+spawn scripts/make-cert.sh $user
+match_max 100000
+
+expect "Enter pass phrase for *"
+send -- "password\r"
+# expect "Verifying - Enter pass phrase for *"
+# send -- "password\r"
+# expect "Enter pass phrase for intermediate/private/$user.key.pem"
+# send -- "$pass\r"
+
+
+# expect "Country Name (2 letter code)"
+# send -- "US\r"
+# expect "State or Province Name"
+# send -- "\r"
+# expect "Locality Name"
+# send -- "\r"
+# expect "Organization Name"
+# send -- "Valgrind Ltd\r"
+# expect "Organizational Unit Name"
+# send -- "\r"
+# expect "Common Name"
+# send -- "$user\r"
+# expect "Email Address"
+# send -- "$user@columbia.edu\r"
+
+# expect "Enter pass phrase for *"
+# send "password\r"
+
+expect "Sign the certificate?"
+send -- "y\r"
+expect "1 out of 1 certificate requests certified, commit?"
+send -- "y\r"
+
+expect eof

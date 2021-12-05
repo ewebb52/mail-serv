@@ -1,0 +1,4 @@
+MAIL FROM:<blepharosphincterectomy>
+RCPT TO:<gorbellied>
+DATA
+hello universe

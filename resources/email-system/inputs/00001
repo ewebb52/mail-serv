@@ -1,0 +1,12 @@
+MAIL FROM:<blepharosphincterectomy>
+RCPT TO:<gorbellied>
+DATA
+hello universe
+.
+MAIL FROM:<blepharosphincterectomy>
+RCPT TO:<gorbellied>
+RCPT TO:<exilic>
+RCPT TO:<starshine>
+DATA
+goodbye universe
+.

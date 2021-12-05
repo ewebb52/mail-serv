@@ -1,0 +1,15 @@
+MAIL FROM:<blepharosphincterectomy>
+RCPT TO:<gorbellied>
+DATA
+hello universe 1
+.
+MAIL FROM:<invalid>
+RCPT TO:<gorbellied>
+DATA
+hello universe 2
+.
+MAIL FROM:<blepharosphincterectomy>
+RCPT TO:<gorbellied>
+DATA
+hello universe 3
+.

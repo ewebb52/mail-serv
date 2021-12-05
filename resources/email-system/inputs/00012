@@ -1,0 +1,6 @@
+MAIL FROM:<gorbellied>
+MAIL FROM:<scerne>
+RCPT TO:<whaledom>
+DATA
+hello outer space
+.

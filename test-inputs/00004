@@ -1,0 +1,5 @@
+GET  https://test:433/ HTTP/1.0
+Request: SENDMSG
+User: test
+Rcpt:
+Content-Length: 
