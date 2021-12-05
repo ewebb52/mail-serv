@@ -1,6 +1,3 @@
-# Team Valgrind
-# Final - Security1
-
 #/bin/bash
 HOME=$(pwd)
 

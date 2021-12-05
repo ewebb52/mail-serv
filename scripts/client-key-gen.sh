@@ -1,7 +1,4 @@
 #!/bin/bash
-# Team Valgrind
-# Final - Security1
-
 
 # PARAMS: USER_NAME
 
