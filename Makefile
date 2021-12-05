@@ -1,7 +1,3 @@
-#
-# Makefile for 4181
-#
-
 CC  = gcc
 CXX = g++
 
